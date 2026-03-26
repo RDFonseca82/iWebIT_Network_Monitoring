@@ -1,6 +1,6 @@
 
 {
-  "API": "https://agent.iwebit.app/script/network_monitoring.php",
+  "API": "https://agent.iwebit.app/scripts/network_monitoring.php",
   "UniqueID": "AUTO",
   "IDSync": "",
   "Gateway": "AUTO",
