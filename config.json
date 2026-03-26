@@ -1,0 +1,14 @@
+
+{
+  "API": "http://YOURSERVER/api/receive.php",
+  "UniqueID": "AUTO",
+  "IDSync": "",
+  "Gateway": "192.168.1.1",
+  "Log": 1,
+  "PingHosts": ["8.8.8.8","1.1.1.1"],
+  "DNSDomains": ["google.com","cloudflare.com"],
+  "HTTPTest": ["https://google.com","https://cloudflare.com"],
+  "Intervals": {
+    "Minimal": 300
+  }
+}
