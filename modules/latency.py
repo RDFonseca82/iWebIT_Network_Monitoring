@@ -1,21 +1,43 @@
-
-import os
-from core.system import get_gateway
+import subprocess
 
 def get_latency(host):
-    result = os.popen(f"ping -c 4 {host} | tail -1| awk '{{print $4}}'").read()
-    if result:
-        return float(result.split('/')[1])
+    try:
+        result = subprocess.check_output(
+            ["ping", "-c", "4", host],
+            stderr=subprocess.DEVNULL
+        ).decode()
+
+        line = [l for l in result.split("\n") if "min/avg" in l]
+        if line:
+            values = line[0].split("=")[1].split("/")
+            return float(values[1])
+    except:
+        pass
+
     return 0
+
 
 def latency_test(config):
     data = {}
-    gw = get_gateway()
-    data["Gateway"] = get_latency(gw)
+
+    try:
+        import subprocess
+        gw = subprocess.check_output(
+            "ip route | grep default | awk '{print $3}'",
+            shell=True
+        ).decode().strip()
+
+        data["Gateway"] = get_latency(gw)
+    except:
+        data["Gateway"] = 0
 
     internet = []
     for host in config["PingHosts"]:
         internet.append(get_latency(host))
 
-    data["Internet"] = sum(internet) / len(internet)
+    if internet:
+        data["Internet"] = sum(internet) / len(internet)
+    else:
+        data["Internet"] = 0
+
     return data
