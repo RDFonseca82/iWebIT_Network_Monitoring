@@ -5,13 +5,13 @@
 
 git clone https://github.com/RDFonseca82/iWebIT_Network_Monitoring.git
 
-cd iWebITAgent_Linux
+cd iWebIT_Network_Monitoring
 
 chmod +x install.sh
 
 sudo ./install.sh
 
-sudo systemctl status iwebit_agent
+sudo systemctl status iwebit_network_monitoring
 
 
 Durante a instalação será solicitado o IdSync (identificador da empresa ou cliente).
@@ -22,54 +22,21 @@ Durante a instalação será solicitado o IdSync (identificador da empresa ou cl
 🚀 Desisntalar iWebItAgent
 
 
-sudo systemctl stop iwebit_agent.service 2>/dev/null
+sudo systemctl stop iwebit_network_monitoring.service 2>/dev/null
 
-sudo systemctl disable iwebit_agent.service 2>/dev/null
+sudo systemctl disable iwebit_network_monitoring.service 2>/dev/null
 
-sudo rm -f /etc/systemd/system/iwebit_agent.service
+sudo rm -f /etc/systemd/system/iwebit_network_monitoring.service
 
 sudo systemctl daemon-reload
 
-sudo rm -rf /opt/iwebit_agent
+sudo rm -rf /opt/iwebit_network_monitoring
 
-sudo rm -rf /var/log/iwebit_agent
+sudo rm -rf /var/log/iwebit_network_monitoring
 
-
-----------------------------------------------------------------------------------------
-
-# Update Manual
-
-sudo curl -o /opt/iwebit_agent/iwebit_agent.py https://raw.githubusercontent.com/RDFonseca82/iWebITAgent_Linux/main/iwebit_agent.py && sudo chmod +x /opt/iwebit_agent/iwebit_agent.py && sudo systemctl restart iwebit_agent
-
-----------------------------------------------------------------------------------------
-
-# Verificar versão do Agente
-
-grep "VERSION" /opt/iwebit_agent/iwebit_agent.py
-
-----------------------------------------------------------------------------------------
-
-# Ativar logs
-
-Editar o ficheiro /opt/iwebit_agent/iwebit_agent.conf
-
-Alterar o valor Log = 1
-
-Ver os logs em /var/log/iwebit_agent/iwebit_agent.log
-
-
-----------------------------------------------------------------------------------------
-
-# Ativar Debug JSON
-
-Editar o ficheiro /opt/iwebit_agent/iwebit_agent.conf
-
-Alterar o valor Debug = 1
-
-Ver o ficheiro JSON a ser enviado em /opt/iwebit_agent/iwebit_send.json
 
 ----------------------------------------------------------------------------------------
 
 #Verificar o status do serviço
 
-sudo systemctl status iwebit_agent 
+sudo systemctl status iwebit_network_monitoring
