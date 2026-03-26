@@ -1,0 +1,14 @@
+[Unit]
+Description=iWebIT Network Monitoring Agent
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/iWebIT_Network_Monitoring/agent.py
+WorkingDirectory=/opt/iWebIT_Network_Monitoring
+Restart=always
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=multi-user.target
