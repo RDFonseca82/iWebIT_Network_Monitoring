@@ -1,12 +1,21 @@
-
-import os
-from core.system import get_gateway
+import subprocess
 
 def packetloss_test(config):
-    gw = get_gateway()
-    result = os.popen(f"ping -c 10 {gw} | grep loss").read()
     try:
-        loss = result.split(',')[2].strip()
-        return loss
+        gw = subprocess.check_output(
+            "ip route | grep default | awk '{print $3}'",
+            shell=True
+        ).decode().strip()
+
+        result = subprocess.check_output(
+            ["ping", "-c", "10", gw],
+            stderr=subprocess.DEVNULL
+        ).decode()
+
+        for line in result.split("\n"):
+            if "packet loss" in line:
+                return line.split(",")[2].strip()
     except:
-        return "0%"
+        pass
+
+    return "0%"
