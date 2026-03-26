@@ -1,9 +1,9 @@
 
 {
-  "API": "https://agent.iwebit.app/script/network_monitoring.php",
+  "API": "http://YOURSERVER/api/receive.php",
   "UniqueID": "AUTO",
   "IDSync": "",
-  "Gateway": "10.",
+  "Gateway": "192.168.1.1",
   "Log": 1,
   "PingHosts": ["8.8.8.8","1.1.1.1"],
   "DNSDomains": ["google.com","cloudflare.com"],
